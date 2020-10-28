@@ -1,0 +1,26 @@
+.container {
+    width: 1024px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .login-title {
+    font-size: 60px;
+    padding: 20px 0;
+  }
+
+  .welcome-image {
+      width: 450px;
+      height: 450px;
+      margin-bottom: 20px;
+  }
+
+  select {
+      margin-top: 10px;
+      margin-left: 10px;
+  }
+
+  button {
+      margin: 30px;
+  }
+  

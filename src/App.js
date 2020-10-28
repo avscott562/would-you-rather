@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import LogIn from './components/LogIn'
 import Nav from './components/Nav'
+import LogIn from './components/LogIn'
+import NewQuestion from './components/NewQuestion'
 
 class App extends Component {
   render() {
@@ -9,9 +10,8 @@ class App extends Component {
       <Router>
         <Fragment>
           <Nav />
-          <LogIn />
           <div className="container">
-            Test this out
+            <NewQuestion />
           </div>
         </Fragment>
       </Router>
