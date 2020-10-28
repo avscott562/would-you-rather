@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import '../css/newQuestion.css'
 
 class NewQuestion extends Component {
@@ -65,4 +66,5 @@ class NewQuestion extends Component {
     }
 }
 
+// export default connect()(NewQuestion)
 export default NewQuestion

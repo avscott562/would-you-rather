@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import '../css/login.css'
 
 class LogIn extends Component {
@@ -34,4 +35,5 @@ class LogIn extends Component {
     }
 }
 
+// export default connect()(LogIn)
 export default LogIn

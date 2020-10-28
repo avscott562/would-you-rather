@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class Question extends Component {
+
+
+class QuestionPage extends Component {
     render() {
         return (
             <div>
@@ -11,5 +13,5 @@ class Question extends Component {
     }
 }
 
-// export default connect()(Question)
-export default Question
+// export default connect()(QuestionPage)
+export default QuestionPage
