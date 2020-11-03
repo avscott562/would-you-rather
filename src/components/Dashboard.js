@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import QuestionPage from './QuestionPage'
 // import { AppBar, Tabs, Tab, TabPanel } from '@material-ui/core';
 import 'materialize-css';
 import { Tabs, Tab } from 'react-materialize';
@@ -17,7 +18,10 @@ class Dashboard extends Component {
                         responsiveThreshold: Infinity,
                         swipeable: false
                       }}
-                      title="Unanswered">Unanswered Questions</Tab>
+                      title="Unanswered">
+                          <h2>Unanswered Questions</h2>
+                          <QuestionPage />
+                    </Tab>
                     <Tab 
                     options={{
                         duration: 300,
@@ -25,7 +29,11 @@ class Dashboard extends Component {
                         responsiveThreshold: Infinity,
                         swipeable: false
                       }}
-                      title="Answered">Answered Questions</Tab>
+                      title="Answered">
+                          <h2>Answered Questions</h2>
+                          <QuestionPage />
+                          <QuestionPage />
+                    </Tab>
                 </Tabs>
             </div>
         )
