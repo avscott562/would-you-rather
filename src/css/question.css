@@ -1,0 +1,22 @@
+.question {
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.question-header {
+    background: grey
+}
+
+img {
+    float: left;
+    margin-right: 5px;
+}
+
+.question-info {
+    margin-bottom: 20px;
+}
+
+.options {
+    text-align: left;
+}

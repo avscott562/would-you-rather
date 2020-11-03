@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import LogIn from './components/LogIn'
 import Dashboard from './components/Dashboard'
 import NewQuestion from './components/NewQuestion'
+import './css/app.css'
 
 class App extends Component {
   render() {

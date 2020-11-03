@@ -19,7 +19,7 @@ class Dashboard extends Component {
                         swipeable: false
                       }}
                       title="Unanswered">
-                          <h2>Unanswered Questions</h2>
+                          <h3>Unanswered Questions</h3>
                           <QuestionPage />
                     </Tab>
                     <Tab 
@@ -30,7 +30,7 @@ class Dashboard extends Component {
                         swipeable: false
                       }}
                       title="Answered">
-                          <h2>Answered Questions</h2>
+                          <h3>Answered Questions</h3>
                           <QuestionPage />
                           <QuestionPage />
                     </Tab>
