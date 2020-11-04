@@ -7,10 +7,14 @@
 .question-header {
     background: grey
 }
+.img-section, .question-info {
+ float: left;
+}
 
 img {
     float: left;
-    margin-right: 5px;
+    border-radius: 50%;
+    margin-right: 7px;
 }
 
 .question-info {

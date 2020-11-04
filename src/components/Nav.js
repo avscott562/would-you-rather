@@ -10,7 +10,7 @@ export default function Nav() {
                     <NavLink to='/dashboard' activeClassName='active' className='nav-option'>Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to='/new' activeClassName='active' className='nav-option'>New Question</NavLink>
+                    <NavLink to='/add' activeClassName='active' className='nav-option'>New Question</NavLink>
                 </li>
                 <li>
                     <NavLink to='/leaderboard' activeClassName='active' className='nav-option'>Leader Board</NavLink>
