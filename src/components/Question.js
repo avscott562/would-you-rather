@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link, withRouter } from'react-router-dom'
 import { connect } from 'react-redux'
 import '../css/question.css'
-import 'materialize-css';
+import 'materialize-css'
 
 class Question extends Component {
     render() {
@@ -15,7 +15,7 @@ class Question extends Component {
                         <h5>Would You Rather...</h5>
                         <p className="options">First Choice to pick from.</p>
                     </section>
-                   <Link to={`/questions/:id`}><button className='btn' type='submit'>See more...</button></Link>
+                   <Link to={`/questions/:id`}><p className='btn' type='submit'>See more...</p></Link>
                 </div>
             </div>
         )

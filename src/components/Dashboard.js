@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-// import { AppBar, Tabs, Tab, TabPanel } from '@material-ui/core';
 import 'materialize-css';
 import { Tabs, Tab } from 'react-materialize';
 
@@ -9,6 +8,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
+                <h1>Jane's Dashboard</h1>
                 <Tabs className="z-depth-1">
                     <Tab 
                       active

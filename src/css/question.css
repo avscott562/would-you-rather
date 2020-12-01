@@ -5,7 +5,9 @@
 }
 
 .question-header {
-    background: grey
+    background: grey;
+    text-align: center;
+    font-size: 30px; 
 }
 .img-section, .question-info {
  float: left;
@@ -23,4 +25,8 @@ img {
 
 .options {
     text-align: left;
+}
+
+.btn {
+    background-color: #af8080 !important;
 }

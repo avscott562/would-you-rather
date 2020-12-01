@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import 'materialize-css';
 import '../css/newQuestion.css'
 
 class NewQuestion extends Component {
@@ -22,7 +23,7 @@ class NewQuestion extends Component {
 
         return (
             <div>
-                <h3 className="center">Create a New Question</h3>
+                <h1>Create a New Question</h1>
                 <form action="" className="new-question">
                     <textarea
                       placeholder={`First Choice...`}
