@@ -24,5 +24,5 @@ class Profile extends Component {
     }
 }
 
-// export default connect()(Question)
+// export default connect()(Profile)
 export default Profile

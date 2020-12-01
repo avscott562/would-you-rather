@@ -7,17 +7,25 @@
   .login-title {
     font-size: 60px;
     padding: 20px 0;
+    margin-bottom: 75px;
   }
 
   .welcome-image {
-      width: 450px;
-      height: 450px;
-      margin-bottom: 20px;
+      width: 350px;
+      height: 350px;
+      margin-right: 100px;
   }
 
-  select {
-      margin-top: 10px;
-      margin-left: 10px;
+  .welcome-image, .logIn {
+      float: left
+  }
+
+  .login-header {
+      margin-bottom: 45px;
+  }
+
+  .login-info {
+      font-family: fantasy;
   }
 
   button {

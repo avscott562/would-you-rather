@@ -4,18 +4,28 @@ import Profile from './Profile'
 
 class LeaderBoard extends Component {
     render() {
+        console.log(this.props)
         return (
             <div>
                 <h1>Leader Board</h1>
+                <ul className="leader-list">
+                    {this.props.userIds.map((id) => (
+                        <li key={id}>
+                            User ID: {id}
+                        </li>
+                    ))}
+                </ul>
                 <Profile />
-                <Profile />
-                <Profile />
-                <Profile />
-                <Profile />
+                
             </div>
         )
     }
 }
 
-// export default connect()(LeaderBoard)
-export default LeaderBoard
+function mapStateToProps ({ users }) {
+    return {
+        userIds: Object.keys(users).sort()
+    }
+}
+
+export default connect(mapStateToProps)(LeaderBoard)
