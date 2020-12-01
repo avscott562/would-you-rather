@@ -46,4 +46,4 @@ class Dashboard extends Component {
 }
 
 // export default connect()(Dashboard)
-export default Dashboard
+export default connect()(Dashboard)

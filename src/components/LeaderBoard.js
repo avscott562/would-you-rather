@@ -11,12 +11,10 @@ class LeaderBoard extends Component {
                 <ul className="leader-list">
                     {this.props.userIds.map((id) => (
                         <li key={id}>
-                            User ID: {id}
+                            <Profile id={id} />
                         </li>
                     ))}
                 </ul>
-                <Profile />
-                
             </div>
         )
     }

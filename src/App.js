@@ -34,16 +34,26 @@ class App extends Component {
         <Fragment>
           <Nav />
           <div className="container">
-            <Route path='/' exact component={LogIn} />
-            <Route path='/dashboard' component={Dashboard} />
-            <Route path='/questions/:id' component={QuestionPage} />
-            <Route path='/add' component={NewQuestion} />
-            <Route path='/leaderboard' component={LeaderBoard} />
+            {this.props.loading === true
+              ? null
+              : <div>
+                  <Route path='/' exact component={LogIn} />
+                  <Route path='/dashboard' component={Dashboard} />
+                  <Route path='/questions/:id' component={QuestionPage} />
+                  <Route path='/add' component={NewQuestion} />
+                  <Route path='/leaderboard' component={LeaderBoard} />
+                </div>}
           </div>
         </Fragment>
       </Router>
       
     );
+  }
+}
+
+function mapStateToProps({ users }) {
+  return {
+      loading: users = []
   }
 }
 
