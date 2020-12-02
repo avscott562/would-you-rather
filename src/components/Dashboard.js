@@ -6,9 +6,12 @@ import { Tabs, Tab } from 'react-materialize';
 
 class Dashboard extends Component {
     render() {
+        console.log(this.props)
+        const { user, answeredIds, unansweredIds  } = this.props
+
         return (
             <div>
-                <h1>Jane's Dashboard</h1>
+                <h1>{`${user.name}'s Dashboard`}</h1>
                 <Tabs className="z-depth-1">
                     <Tab 
                       active
@@ -20,9 +23,11 @@ class Dashboard extends Component {
                       }}
                       title="Unanswered">
                           <h3>Unanswered Questions</h3>
-                          <Question />
-                          <Question />
-                          <Question />
+                          {unansweredIds.map(id => (
+                              <p key={id}>
+                                  <Question id={id}/>
+                              </p>
+                          ))}
                     </Tab>
                     <Tab 
                     options={{
@@ -33,11 +38,11 @@ class Dashboard extends Component {
                       }}
                       title="Answered">
                           <h3>Answered Questions</h3>
-                          <Question />
-                          <Question />
-                          <Question />
-                          <Question />
-                          <Question />
+                          {answeredIds.map(id => (
+                              <p key={id}>
+                                  <Question id={id}/>
+                              </p>
+                          ))}
                     </Tab>
                 </Tabs>
             </div>
@@ -45,5 +50,18 @@ class Dashboard extends Component {
     }
 }
 
+function mapStateToProps ({ authedUser, questions, users }) {
+    const user = users[authedUser]
+    const questionIds = Object.keys(questions)
+    const answeredIds = Object.keys(user.answers)
+    const unansweredIds = questionIds.filter(id => !answeredIds.includes(id))
+
+    return {
+        user,
+        answeredIds,
+        unansweredIds
+    }
+}
+
 // export default connect()(Dashboard)
-export default connect()(Dashboard)
+export default connect(mapStateToProps)(Dashboard)

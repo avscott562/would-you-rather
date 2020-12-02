@@ -4,8 +4,8 @@ import Profile from './Profile'
 
 class LeaderBoard extends Component {
     render() {
-        console.log(this.props)
-        this.props.sortedUsers.map(user => console.log(user.id, user.score))
+        // console.log(this.props)
+        // this.props.sortedUsers.map(user => console.log(user.id, user.score))
         return (
             <div>
                 <h1>Leader Board</h1>
@@ -35,7 +35,6 @@ function mapStateToProps ({ users }) {
     })
 
     const sortedUsers = usersTotals.sort((a,b) => b.score - a.score)
-    const userIds = sortedUsers.map(user => user.id)
 
     return {
         sortedUsers
