@@ -5,13 +5,14 @@ import Profile from './Profile'
 class LeaderBoard extends Component {
     render() {
         console.log(this.props)
+        this.props.sortedUsers.map(user => console.log(user.id, user.score))
         return (
             <div>
                 <h1>Leader Board</h1>
                 <ul className="leader-list">
-                    {this.props.userIds.map((id) => (
-                        <li key={id}>
-                            <Profile id={id} />
+                    {this.props.sortedUsers.map((user) => (
+                        <li key={user.id}>
+                            <Profile id={user.id} score={user.score} asked={user.asked} answered={user.answered} />
                         </li>
                     ))}
                 </ul>
@@ -27,6 +28,8 @@ function mapStateToProps ({ users }) {
 
         return {
             id: user[1].id,
+            asked,
+            answered,
             score: asked + answered
         }
     })
@@ -35,7 +38,6 @@ function mapStateToProps ({ users }) {
     const userIds = sortedUsers.map(user => user.id)
 
     return {
-        userIds,
         sortedUsers
     }
 }

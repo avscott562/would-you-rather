@@ -5,19 +5,12 @@ import 'materialize-css';
 
 class Profile extends Component {
     render() {
-        const { user } = this. props
+        const { user, score, asked, answered } = this.props
 
         const {
-            id,
             name,
-            avatarURL,
-            answers,
-            questions
+            avatarURL
         } = user
-
-        const questionQty = questions.length
-        const answerQty = Object.keys(answers).length
-        const totalScore = questionQty + answerQty
 
         return (
             <div className="profile">
@@ -26,24 +19,27 @@ class Profile extends Component {
                </section>
                <section className="user-bio">
                    <p className="user-name">{name}</p>
-                   <p className="user-asked">{`questions asked: ${questionQty}`}</p>
-                   <p className="user-answered">{`questions answered: ${answerQty}`}</p>
+                   <p className="user-asked">{`questions asked: ${asked}`}</p>
+                   <p className="user-answered">{`questions answered: ${answered}`}</p>
                </section>
                <section className="user-score">
                    <p>Total Score</p>
-                   <p>{totalScore}</p>
+                   <p>{score}</p>
                </section>
             </div>
         )
     }
 }
 
-function mapStateToProps ({ authedUser, users }, { id }) {
+function mapStateToProps ({ authedUser, users }, { id, score, asked, answered }) {
     const user = users[id]
 
     return {
         authedUser,
-        user
+        user,
+        score,
+        asked,
+        answered
     }
 }
 
