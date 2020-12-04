@@ -4,9 +4,40 @@ import { connect } from 'react-redux'
 import 'materialize-css';
 import { Select, Button, Icon } from 'react-materialize';
 import '../css/login.css'
+// bring in action to set authed user
+import { setCurrentUser } from '../actions/authedUser'
 
 class LogIn extends Component {
+    state = {
+        authedId: ''
+    }
+
+    handleChange = (e) => {
+        const authedId = e.target.value
+        console.log(authedId)
+
+        this.setState(() => ({
+            authedId
+        }))
+    } 
+    
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        const { authedId } = this.state
+
+        const { dispatch } = this.props
+
+        dispatch(setCurrentUser(authedId))
+
+        this.setState(() => ({
+            authedId: ''
+        }))
+    }
+
     render() {
+        const { userList } = this.props
+        console.log(userList)
         return (
             <Fragment>
                 <header>
@@ -27,24 +58,25 @@ class LogIn extends Component {
                             <Select 
                               id="user-select"
                               multiple={false}
+                              onChange={this.handleChange}
                               options={{
-                                  closeOnClick: true
+                                  closeOnClick: true,
                               }}
                               value=''>
                                 <option disabled value=''>Select a User</option>
-                                <option value='1'>User 1</option>
-                                <option value='2'>User 2</option>
-                                <option value='3'>User 3</option>
+                                {userList.map((user) => (
+                                     <option key={user.id} value={user.id}>{user.name}</option>
+                                ))}
                             </Select>
                         </div>
                         <Link to={'/dashboard'}>
                             <Button 
                             node="button"
-                            type="submit">Log In!
+                            type="submit"
+                            onClick={this.handleSubmit}>Log In!
                             <Icon right>send</Icon>
                             </Button>
                         </Link>
-                        
                     </section>
                     
                 </div>
@@ -53,4 +85,18 @@ class LogIn extends Component {
     }
 }
 
-export default connect()(LogIn)
+function mapStateToProps ({ users, authedUser }) {
+    const userList = Object.entries(users).map(user => {
+        return {
+            id: user[1].id,
+            name: user[1].name
+        }
+    })
+    console.log('user list', userList)
+    return {
+        userList,
+        authedUser
+    }
+}
+
+export default connect(mapStateToProps)(LogIn)

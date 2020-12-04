@@ -3,16 +3,26 @@ import { connect } from 'react-redux'
 import Question from './Question'
 import 'materialize-css';
 import { Tabs, Tab } from 'react-materialize';
+import '../css/dashboard.css'
 
 class Dashboard extends Component {
     render() {
         console.log(this.props)
-        const { user, answeredIds, unansweredIds  } = this.props
+        const { user, questionIds } = this.props
+
+        const { name, answers, avatarURL } = user
+
+        const answeredIds = Object.keys(answers)
+        const unansweredIds = questionIds.filter(id => !answeredIds.includes(id))
 
         return (
             <div>
-                <h1>{`${user.name}'s Dashboard`}</h1>
-                <Tabs className="z-depth-1">
+                <div className="dashboard-header">
+                    <img src={avatarURL} alt={`Avatar of ${name}`}/>
+                    <h1>{name}</h1>
+                </div>
+
+                <Tabs className="z-depth-1 dashboard-tab">
                     <Tab 
                       active
                       options={{
@@ -52,17 +62,13 @@ class Dashboard extends Component {
 
 function mapStateToProps ({ authedUser, questions, users }) {
     console.log('users:  ', users)
-    const user = users.[authedUser]
+    const user = users[authedUser]
     const questionIds = Object.keys(questions)
-    const answeredIds = Object.keys(user.answers)
-    const unansweredIds = questionIds.filter(id => !answeredIds.includes(id))
 
     return {
         user,
-        answeredIds,
-        unansweredIds
+        questionIds
     }
 }
 
-// export default connect()(Dashboard)
 export default connect(mapStateToProps)(Dashboard)
