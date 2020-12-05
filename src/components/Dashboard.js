@@ -6,6 +6,7 @@ import { Tabs, Tab } from 'react-materialize';
 import '../css/dashboard.css'
 
 class Dashboard extends Component {
+
     render() {
         console.log(this.props)
         const { user, questionIds } = this.props
@@ -62,7 +63,9 @@ class Dashboard extends Component {
 
 function mapStateToProps ({ authedUser, questions, users }) {
     console.log('users:  ', users)
+    console.log('authed user', authedUser)
     const user = users[authedUser]
+    console.log('user info', user)
     const questionIds = Object.keys(questions)
 
     return {

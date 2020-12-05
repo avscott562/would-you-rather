@@ -5,7 +5,7 @@ import 'materialize-css';
 import { Select, Button, Icon } from 'react-materialize';
 import '../css/login.css'
 // bring in action to set authed user
-import { setCurrentUser } from '../actions/authedUser'
+import { setAuthedUser, removeCurrentUser } from '../actions/authedUser'
 
 class LogIn extends Component {
     state = {
@@ -28,16 +28,22 @@ class LogIn extends Component {
 
         const { dispatch } = this.props
 
-        dispatch(setCurrentUser(authedId))
+        dispatch(setAuthedUser(authedId))
 
         this.setState(() => ({
             authedId: ''
         }))
     }
 
+    handleLogOut = (e) => {
+        e.preventDefault()
+        const { dispatch } = this.props
+        dispatch(removeCurrentUser())
+    }
+
     render() {
-        const { userList } = this.props
-        console.log(userList)
+        const { userList, authedUser } = this.props
+        
         return (
             <Fragment>
                 <header>
@@ -77,6 +83,7 @@ class LogIn extends Component {
                             <Icon right>send</Icon>
                             </Button>
                         </Link>
+                        <button onClick={this.handleLogOut}>log out</button>
                     </section>
                     
                 </div>
