@@ -20,7 +20,7 @@ class Dashboard extends Component {
             <div>
                 <div className="dashboard-header">
                     <img src={avatarURL} alt={`Avatar of ${name}`}/>
-                    <h1>{name}</h1>
+                    <h1>{`Hi ${name}!`}</h1>
                 </div>
 
                 <Tabs className="z-depth-1 dashboard-tab">

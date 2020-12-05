@@ -4,7 +4,7 @@ export const GET_AUTHED_USER = 'GET_AUTHED_USER'
 export const REMOVE_AUTHED_USER = 'REMOVE_AUTHED_USER'
 
 // function to set authed user
-export function setAuthedUser (id) {
+function setAuthedUser (id) {
     return {
         type: SET_AUTHED_USER,
         id
@@ -12,11 +12,11 @@ export function setAuthedUser (id) {
 }
 
 // action creator - function to call action to set authed user
-// export function setCurrentUser (id) {
-//     return (dispatch) => {
-//         dispatch(setAuthedUser(id))
-//     }
-// }
+export function setCurrentUser (id) {
+    return (dispatch) => {
+        dispatch(setAuthedUser(id))
+    }
+}
 
 // function to get authed user
 function getAuthedUser () {
@@ -38,7 +38,7 @@ export function getCurrentUser () {
 function removeAuthedUser () {
     return {
         type: REMOVE_AUTHED_USER,
-        id: null
+        id: null 
     }
 }
 
