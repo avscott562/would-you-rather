@@ -14,6 +14,18 @@ function addQuestion (question) {
     }
 }
 // -- TO DO -- action creator - function to call action to add new question
+export function handleAddQuestion (optionOneText, optionTwoText) {
+    return (dispatch, getState) => {
+        const { authedUser } = getState()
+
+        return saveQuestion({
+            optionOneText, 
+            optionTwoText, 
+            author: authedUser
+        })
+        .then((question) => dispatch(addQuestion(question)))
+    }
+}
 
 
 // action creator - function to call action to get all questions

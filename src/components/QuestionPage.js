@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Question from './Question'
 import '../css/question.css'
 
 
-
 class QuestionPage extends Component {
+    handleSubmit = (e) => {
+        e.preventDefault()
+
+        // add function to save answer
+    }
+
     render() {
         console.log(this.props)
         const {
@@ -39,7 +43,9 @@ class QuestionPage extends Component {
                             <p>
                                 <label>
                                     <input name="Question 1 options" type="radio" />
-                                    <span className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>{optionTwo.text}</span>
+                                    <span className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>
+                                        {optionTwo.text}
+                                    </span>
                                 </label>
                             </p>
                         </form>
@@ -60,7 +66,6 @@ function mapStateToProps({ authedUser, users, questions }, props) {
     const { id } = props.match.params
     const question = questions[id]
     const author = users[question.author]
-    // console.log(users[authedUser])
     const answer = Object.keys(users[authedUser].answers).includes(id) 
       ? users[authedUser].answers[id] : null
 

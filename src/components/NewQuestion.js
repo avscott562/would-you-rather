@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { handleAddQuestion } from '../actions/questions'
 import 'materialize-css';
 import '../css/newQuestion.css'
 
@@ -15,11 +17,26 @@ class NewQuestion extends Component {
         }))
     }
 
+    handleSubmit = (e) => {
+      e.preventDefault()
+
+      const { optionOne, optionTwo } = this.state
+
+      const { dispatch } = this.props
+
+      dispatch(handleAddQuestion(optionOne, optionTwo))
+
+      this.setState(() => ({
+        optionOne: '',
+        optionTwo: ''
+      }))
+    }
+
     render() {
         const { optionOne, optionTwo } = this.state
 
-        const textLeftOne = 250 -optionOne.length
-        const textLeftTwo = 250 -optionTwo.length
+        const textLeftOne = 100 -optionOne.length
+        const textLeftTwo = 100 -optionTwo.length
 
         return (
             <div>
@@ -31,11 +48,11 @@ class NewQuestion extends Component {
                       value={optionOne}
                       onChange={this.handleChange}
                       className='textarea'
-                      maxLength={250}
+                      maxLength={100}
                     />
 
-                    {textLeftOne > 100 
-                      ? <div className='max-length'>Maximum 250 characters.</div>
+                    {textLeftOne > 50 
+                      ? <div className='max-length'>Maximum 100 characters.</div>
                       : <div className='text-length'>{textLeftOne} characters left.</div>}
                 
                     <p>--- OR ---</p>
@@ -46,11 +63,11 @@ class NewQuestion extends Component {
                       value={optionTwo}
                       onChange={this.handleChange}
                       className='textarea'
-                      maxLength={250}
+                      maxLength={100}
                     />
 
-                    {textLeftTwo > 100 
-                      ? <div className='max-length'>Maximum 250 characters.</div>
+                    {textLeftTwo > 50 
+                      ? <div className='max-length'>Maximum 100 characters.</div>
                       : <div className='text-length'>{textLeftTwo} characters left.</div>}
 
                     <br />
@@ -58,7 +75,8 @@ class NewQuestion extends Component {
                     <button 
                       className='btn'
                       type='submit'
-                      disabled={(optionOne === '') || (optionTwo === '')}>
+                      disabled={(optionOne === '') || (optionTwo === '')}
+                      onClick={this.handleSubmit}>
                         Submit
                     </button>
                 </form>
@@ -67,5 +85,4 @@ class NewQuestion extends Component {
     }
 }
 
-// export default connect()(NewQuestion)
-export default NewQuestion
+export default connect()(NewQuestion)
