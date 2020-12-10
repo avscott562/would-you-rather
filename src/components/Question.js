@@ -16,7 +16,11 @@ class Question extends Component {
 
         return (
             <div className="question">
-                <p className="question-header">{name} asks:</p>
+                <p className="question-header">
+                    {authedUser === author.id 
+                    ? <span>You ask:</span>
+                    : <span>{name} asks:</span>}
+                </p>
                 <div className="question-body">
                     <section className="img-section"><img src={avatarURL} alt={author.id}/></section>
                     <section className="question-info">

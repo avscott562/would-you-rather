@@ -9,7 +9,8 @@ class QuestionPage extends Component {
     render() {
         console.log(this.props)
         const {
-            currentUser,
+            authedUser,
+            answer,
             question: { id, optionOne, optionTwo },
             author,
             author: { name, avatarURL } 
@@ -17,7 +18,11 @@ class QuestionPage extends Component {
 
         return (
             <div className="question">
-                <p className="question-header">{name} asks:</p>
+                <p className="question-header">
+                    {authedUser === author.id 
+                    ? <span>You ask:</span>
+                    : <span>{name} asks:</span>}
+                </p>
                 <div className="question-body">
                     <section><img src={avatarURL} alt={author.id}/></section>
                     <section className="question-info">
@@ -46,12 +51,15 @@ class QuestionPage extends Component {
 
 function mapStateToProps({ authedUser, users, questions }, props) {
     const { id } = props.match.params
-    const currentUser = users[authedUser]
     const question = questions[id]
     const author = users[question.author]
+    // console.log(users[authedUser])
+    const answer = Object.keys(users[authedUser].answers).includes(id) 
+      ? users[authedUser].answers[id] : null
 
     return {
-        currentUser,
+        authedUser,
+        answer,
         question,
         author
     }
