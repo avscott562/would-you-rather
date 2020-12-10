@@ -22,7 +22,7 @@ class LogIn extends Component {
     } 
     
     handleSubmit = (e) => {
-        // e.preventDefault()
+        e.preventDefault()
 
         const { authedId } = this.state
 
@@ -69,14 +69,12 @@ class LogIn extends Component {
                                 ))}
                             </Select>
                         </div>
-                        <Link to={'/dashboard'}>
-                            <Button 
-                            node="button"
-                            type="submit"
-                            onClick={this.handleSubmit}>Log In!
+                        <Button 
+                          node="button"
+                          type="submit"
+                          onClick={this.handleSubmit}>Log In!
                             <Icon right>send</Icon>
-                            </Button>
-                        </Link>
+                        </Button>
                     </section>
                     
                 </div>

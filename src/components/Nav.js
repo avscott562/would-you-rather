@@ -16,9 +16,6 @@ class Nav extends Component {
             <nav className='nav'>
                 <ul>
                     <li>
-                        <NavLink to='/dashboard' activeClassName='active' className='nav-option'>Home</NavLink>
-                    </li>
-                    <li>
                         <NavLink to='/add' activeClassName='active' className='nav-option'>New Question</NavLink>
                     </li>
                     <li>

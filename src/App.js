@@ -11,11 +11,10 @@ import { handleInitialdata } from './actions/shared'
 
 // bring in components
 import Nav from './components/Nav'
-import LogIn from './components/LogIn'
-import Dashboard from './components/Dashboard'
 import QuestionPage from './components/QuestionPage'
 import NewQuestion from './components/NewQuestion'
 import LeaderBoard from './components/LeaderBoard'
+import Home from './components/Home'
 
 // bring in css file
 import './css/app.css'
@@ -29,6 +28,8 @@ class App extends Component {
   }
 
   render() {
+    // console.log(this.state)
+
     return (
       <Router>
         <Fragment>
@@ -37,8 +38,7 @@ class App extends Component {
             {this.props.loading === true
               ? null
               : <div>
-                  <Route path='/' exact component={LogIn} />
-                  <Route path='/dashboard' component={Dashboard} />
+                  <Route path='/' exact component={Home} />
                   <Route path='/questions/:id' component={QuestionPage} />
                   <Route path='/add' component={NewQuestion} />
                   <Route path='/leaderboard' component={LeaderBoard} />
@@ -57,4 +57,4 @@ function mapStateToProps({ users }) {
   }
 }
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);

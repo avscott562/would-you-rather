@@ -4,7 +4,7 @@ import { getInitialData } from '../utils/api'
 // import action creators from action files
 import { receiveUsers } from './users'
 import { receiveQuestions } from './questions'
-// import { setCurrentUser } from './authedUser'
+import { setCurrentUser } from './authedUser'
 
 // -- TO DO -- need to set this by the selection on the log in page
 // const authedId = 'sarahedo'
@@ -16,7 +16,7 @@ export function handleInitialdata () {
           .then(({ users, questions }) => {
               dispatch(receiveUsers(users))
               dispatch(receiveQuestions(questions))
-            //   dispatch(setAuthedUser(authedId))
+              dispatch(setCurrentUser(null))
           })
     }
 }
