@@ -7,24 +7,32 @@ import '../css/question.css'
 
 class QuestionPage extends Component {
     render() {
+        console.log(this.props)
+        const {
+            currentUser,
+            question: { id, optionOne, optionTwo },
+            author,
+            author: { name, avatarURL } 
+        } = this.props
+
         return (
             <div className="question">
-                <p className="question-header">Jane Doe asks:</p>
+                <p className="question-header">{name} asks:</p>
                 <div className="question-body">
-                    <section><img src="https://via.placeholder.com/150" alt=""/></section>
+                    <section><img src={avatarURL} alt={author.id}/></section>
                     <section className="question-info">
                         <h5>Would You Rather...</h5>
                         <form className="options">
                             <p>
                                 <label>
                                     <input name="Question 1 options" type="radio" />
-                                    <span>First Choice to pick from.</span>
+                                    <span>{optionOne.text}</span>
                                 </label>
                             </p>
                             <p>
                                 <label>
                                     <input name="Question 1 options" type="radio" />
-                                    <span>Second Choice to pick from and let's see how this goes.</span>
+                                    <span>{optionTwo.text}</span>
                                 </label>
                             </p>
                         </form>
@@ -36,5 +44,17 @@ class QuestionPage extends Component {
     }
 }
 
-// export default connect()(QuestionPage)
-export default QuestionPage
+function mapStateToProps({ authedUser, users, questions }, props) {
+    const { id } = props.match.params
+    const currentUser = users[authedUser]
+    const question = questions[id]
+    const author = users[question.author]
+
+    return {
+        currentUser,
+        question,
+        author
+    }
+}
+
+export default connect(mapStateToProps)(QuestionPage)
