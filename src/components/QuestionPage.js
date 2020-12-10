@@ -31,18 +31,25 @@ class QuestionPage extends Component {
                             <p>
                                 <label>
                                     <input name="Question 1 options" type="radio" />
-                                    <span>{optionOne.text}</span>
+                                    <span className={`choice ${answer === 'optionOne' ? 'selected-answer' : ''}`}>
+                                        {optionOne.text}
+                                    </span>
                                 </label>
                             </p>
                             <p>
                                 <label>
                                     <input name="Question 1 options" type="radio" />
-                                    <span>{optionTwo.text}</span>
+                                    <span className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>{optionTwo.text}</span>
                                 </label>
                             </p>
                         </form>
                     </section>
-                   <button className='btn' type='submit'>Submit</button>
+                    <button 
+                      className='btn' 
+                      type='submit'
+                      disabled={answer !== null}>
+                         Submit
+                    </button>
                 </div>
             </div>
         )

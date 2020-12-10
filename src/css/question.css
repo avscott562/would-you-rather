@@ -27,6 +27,11 @@ img {
     text-align: left;
 }
 
+.selected-answer {
+    background-color: #78bef8;
+    color: black;
+}
+
 .btn {
     background-color: #af8080 !important;
 }
