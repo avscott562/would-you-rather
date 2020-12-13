@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { handleAddQuestion } from '../actions/questions'
 import 'materialize-css';
 import '../css/newQuestion.css'
@@ -9,6 +9,7 @@ class NewQuestion extends Component {
     state = {
         optionOne: "",
         optionTwo: "",
+        toHome: false
     }
 
     handleChange = (e) => {
@@ -28,19 +29,25 @@ class NewQuestion extends Component {
 
       this.setState(() => ({
         optionOne: '',
-        optionTwo: ''
+        optionTwo: '',
+        toHome: true
       }))
     }
 
     render() {
-        const { optionOne, optionTwo } = this.state
+        const { optionOne, optionTwo, toHome } = this.state
+
+        if (toHome === true) {
+          return <Redirect to='/' />
+      }
 
         const textLeftOne = 100 -optionOne.length
         const textLeftTwo = 100 -optionTwo.length
 
         return (
             <div>
-                <h1>Create a New Question</h1>
+                <h1>Create a New Poll!</h1>
+                <h3>Would You Rather...</h3>
                 <form action="" className="new-question">
                     <textarea
                       placeholder={`First Choice...`}

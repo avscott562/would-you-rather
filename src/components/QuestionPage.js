@@ -6,12 +6,12 @@ import { handleAnswerQuestion } from '../actions/questions'
 
 class QuestionPage extends Component {
     state = {
-        answer: ''
+        selectedAnswer: ''
     }
 
     handleChange = (e) => {
         this.setState(() => ({
-            answer: e.target.value
+            selectedAnswer: e.target.value
         }))
     }
 
@@ -23,11 +23,11 @@ class QuestionPage extends Component {
         dispatch(handleAnswerQuestion({
             authedUser, 
             qid: question.id, 
-            answer: this.state.answer
+            answer: this.state.selectedAnswer
         }))
 
         this.setState(() => ({
-            answer: ''
+            selectedAnswer: ''
         }))
     }
 
@@ -39,6 +39,13 @@ class QuestionPage extends Component {
             question: { optionOne, optionTwo },
             author: { id, name, avatarURL } 
         } = this.props
+
+        // calculate the votes
+        const optOneVotes = optionOne.votes.length
+        const optTwoVotes = optionTwo.votes.length
+        const totalVotes = optOneVotes + optTwoVotes
+        const voteOnePct = (optOneVotes/totalVotes) * 100
+        const voteTwoPct = (optTwoVotes/totalVotes) * 100
 
         return (
             <div className="question">
@@ -59,12 +66,19 @@ class QuestionPage extends Component {
                                       type="radio" 
                                       value="optionOne" 
                                       onChange={this.handleChange}
-                                      checked={this.state.answer === 'optionOne'}
+                                      disabled={answer !== null}
+                                      checked={this.state.selectedAnswer === 'optionOne'}
                                     />
                                     <span className={`choice ${answer === 'optionOne' ? 'selected-answer' : ''}`}>
                                         {optionOne.text}
                                     </span>
                                 </label>
+                                {answer !== null && (
+                                    <div>
+                                        <p>{voteOnePct}% of people prefer this option</p>
+                                        <p>{optOneVotes} out of {totalVotes}</p>
+                                    </div>
+                                )}
                             </p>
                             <p>
                                 <label>
@@ -73,12 +87,19 @@ class QuestionPage extends Component {
                                       type="radio" 
                                       value="optionTwo"
                                       onChange={this.handleChange}
-                                      checked={this.state.answer === 'optionTwo'} 
+                                      disabled={answer !== null}
+                                      checked={this.state.selectedAnswer === 'optionTwo'} 
                                     />
                                     <span className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>
                                         {optionTwo.text}
                                     </span>
                                 </label>
+                                {answer !== null && (
+                                    <div>
+                                        <p>{voteTwoPct}% of people prefer this option</p>
+                                        <p>{optTwoVotes} out of {totalVotes}</p>
+                                    </div>
+                                )}
                             </p>
                         </form>
                     </section>

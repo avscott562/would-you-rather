@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 // bring in connect so all of the child components can access the state
 import { connect } from 'react-redux'
 
+// bring in loading bar
+import LoadingBar from 'react-redux-loading'
+
 // bring in the shared action that initiates obtaining the initial data
 import { handleInitialdata } from './actions/shared'
 
@@ -28,11 +31,11 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state)
 
     return (
       <Router>
         <Fragment>
+          <LoadingBar />
           <Nav />
           <div className="container">
             {this.props.loading === true

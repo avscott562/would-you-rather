@@ -1,6 +1,8 @@
 // get like function/calls from api 
 import { saveQuestion, saveQuestionAnswer } from '../utils/api'
-import { handleAnswer } from './shared'
+
+// get loading bar actions
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 // bring in action creator from user
 import { handleAddUserQuestion, handleAddAnswer } from './users'
@@ -22,6 +24,8 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
     return (dispatch, getState) => {
         const { authedUser } = getState()
 
+        dispatch(showLoading())
+
         return saveQuestion({
             optionOneText, 
             optionTwoText, 
@@ -31,6 +35,7 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
             dispatch(addQuestion(question))
             dispatch(handleAddUserQuestion(question))
         })
+        .then(() => dispatch(hideLoading()))
     }
 }
 
