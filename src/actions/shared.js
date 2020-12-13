@@ -2,8 +2,8 @@
 import { getInitialData } from '../utils/api'
 
 // import action creators from action files
-import { receiveUsers } from './users'
-import { receiveQuestions } from './questions'
+import { receiveUsers, handleAddAnswer } from './users'
+import { receiveQuestions, handleAnswerQuestion } from './questions'
 import { setCurrentUser } from './authedUser'
 
 // -- TO DO -- need to set this by the selection on the log in page
@@ -18,5 +18,12 @@ export function handleInitialdata () {
               dispatch(receiveQuestions(questions))
               dispatch(setCurrentUser(null))
           })
+    }
+}
+
+export function handleAnswer(info) {
+    return (dispatch) => {
+        dispatch(handleAnswerQuestion(info))
+        dispatch(handleAddAnswer(info))
     }
 }

@@ -1,13 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/question.css'
+import { handleAnswer } from '../actions/shared'
 
 
 class QuestionPage extends Component {
+    state = {
+        answer: ''
+    }
+
+    handleChange = (e) => {
+        this.setState(() => ({
+            answer: e.target.value
+        }))
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
 
-        // add function to save answer
+        const { dispatch, question, authedUser } = this.props
+
+        dispatch(handleAnswer({
+            authedUser, 
+            qid: question.id, 
+            answer: this.state.answer
+        }))
+
+        this.setState(() => ({
+            answer: ''
+        }))
     }
 
     render() {
@@ -15,26 +36,31 @@ class QuestionPage extends Component {
         const {
             authedUser,
             answer,
-            question: { id, optionOne, optionTwo },
-            author,
-            author: { name, avatarURL } 
+            question: { optionOne, optionTwo },
+            author: { id, name, avatarURL } 
         } = this.props
 
         return (
             <div className="question">
                 <p className="question-header">
-                    {authedUser === author.id 
+                    {authedUser === id 
                     ? <span>You ask:</span>
                     : <span>{name} asks:</span>}
                 </p>
                 <div className="question-body">
-                    <section><img src={avatarURL} alt={author.id}/></section>
+                    <section><img src={avatarURL} alt={id}/></section>
                     <section className="question-info">
                         <h5>Would You Rather...</h5>
                         <form className="options">
                             <p>
                                 <label>
-                                    <input name="Question 1 options" type="radio" />
+                                    <input 
+                                      name="options" 
+                                      type="radio" 
+                                      value="optionOne" 
+                                      onChange={this.handleChange}
+                                      checked={this.state.answer === 'optionOne'}
+                                    />
                                     <span className={`choice ${answer === 'optionOne' ? 'selected-answer' : ''}`}>
                                         {optionOne.text}
                                     </span>
@@ -42,7 +68,13 @@ class QuestionPage extends Component {
                             </p>
                             <p>
                                 <label>
-                                    <input name="Question 1 options" type="radio" />
+                                    <input 
+                                      name="options" 
+                                      type="radio" 
+                                      value="optionTwo"
+                                      onChange={this.handleChange}
+                                      checked={this.state.answer === 'optionTwo'} 
+                                    />
                                     <span className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>
                                         {optionTwo.text}
                                     </span>
@@ -53,7 +85,8 @@ class QuestionPage extends Component {
                     <button 
                       className='btn' 
                       type='submit'
-                      disabled={answer !== null}>
+                      disabled={answer !== null}
+                      onClick={this.handleSubmit}>
                          Submit
                     </button>
                 </div>
