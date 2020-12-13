@@ -15,7 +15,8 @@ class Dashboard extends Component {
         } = this.props
 
         const answeredIds = Object.keys(answers)
-        const unansweredIds = questionIds.filter(id => !answeredIds.includes(id))
+        const answered = questionIds.filter(id => answeredIds.includes(id))
+        const unanswered = questionIds.filter(id => !answeredIds.includes(id))
 
         return (
             <div>
@@ -35,7 +36,7 @@ class Dashboard extends Component {
                       }}
                       title="Unanswered">
                           <h3>Unanswered Questions</h3>
-                          {unansweredIds.map(id => (
+                          {unanswered.map(id => (
                               <p key={id}>
                                   <Question id={id}/>
                               </p>
@@ -50,7 +51,7 @@ class Dashboard extends Component {
                       }}
                       title="Answered">
                           <h3>Answered Questions</h3>
-                          {answeredIds.map(id => (
+                          {answered.map(id => (
                               <p key={id}>
                                   <Question id={id}/>
                               </p>

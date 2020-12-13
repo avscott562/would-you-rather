@@ -1,8 +1,9 @@
 // get like function/calls from api 
 import { saveQuestion, saveQuestionAnswer } from '../utils/api'
+import { handleAnswer } from './shared'
 
 // bring in action creator from user
-import { handleAddUserQuestion } from './users'
+import { handleAddUserQuestion, handleAddAnswer } from './users'
 
 // action type
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
@@ -56,11 +57,13 @@ function answerQuestion ({ authedUser, qid, answer }) {
 export function handleAnswerQuestion (info) {
     return (dispatch) => {
         dispatch(answerQuestion(info))
+        dispatch(handleAddAnswer(info))
 
         return saveQuestionAnswer(info)
           .catch((e) => {
               console.warn('Error in handleAnswerQuestion: ', e)
               dispatch(answerQuestion(info))
+              dispatch(handleAddAnswer(info))
               alert('There was an error answering the question.  Please try again.')
           })
     }

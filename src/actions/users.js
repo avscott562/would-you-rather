@@ -26,7 +26,6 @@ function addUserQuestion ({ author, id }) {
 // action creator to call function to add new question to user profile
 export function handleAddUserQuestion (question) {
     return (dispatch) => {
-
         return dispatch(addUserQuestion(question))
     }
 }
@@ -45,12 +44,5 @@ function addAnswer ({ authedUser, qid, answer }) {
 export function handleAddAnswer (info) {
     return (dispatch) => {
         dispatch(addAnswer(info))
-
-        return saveQuestionAnswer(info)
-          .catch((e) => {
-              console.warn('Error in handleAddAnswer: ', e)
-              dispatch(addAnswer(info))
-              alert('There was an error answering the question.  Please try again.')
-          })
     }
 }

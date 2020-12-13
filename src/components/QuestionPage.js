@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../css/question.css'
-import { handleAnswer } from '../actions/shared'
+import { handleAnswerQuestion } from '../actions/questions'
 
 
 class QuestionPage extends Component {
@@ -20,7 +20,7 @@ class QuestionPage extends Component {
 
         const { dispatch, question, authedUser } = this.props
 
-        dispatch(handleAnswer({
+        dispatch(handleAnswerQuestion({
             authedUser, 
             qid: question.id, 
             answer: this.state.answer
