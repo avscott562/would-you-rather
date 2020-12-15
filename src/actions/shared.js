@@ -5,8 +5,8 @@ import { getInitialData } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 // import action creators from action files
-import { receiveUsers, handleAddAnswer } from './users'
-import { receiveQuestions, handleAnswerQuestion } from './questions'
+import { receiveUsers } from './users'
+import { receiveQuestions } from './questions'
 import { setCurrentUser } from './authedUser'
 
 // action creator - get inital data stored on database - will need to use redux-thunk middleware because we are returning a function from this action

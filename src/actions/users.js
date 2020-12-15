@@ -1,6 +1,3 @@
-// get like function/calls from api 
-import { saveQuestion, saveQuestionAnswer } from '../utils/api'
-
 // action type
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const NEW_QUESTION = 'NEW_QUESTION'

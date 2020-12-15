@@ -63,7 +63,7 @@ class QuestionPage extends Component {
                         <div className="question-info">
                             <h5>Would You Rather...</h5>
                             <form className="options">
-                                <p>
+                                <p className={`choice ${answer === 'optionOne' ? 'selected-answer' : ''}`}>
                                     <label>
                                         <input 
                                         name="options" 
@@ -73,7 +73,7 @@ class QuestionPage extends Component {
                                         disabled={answer !== null}
                                         checked={this.state.selectedAnswer === 'optionOne'}
                                         />
-                                        <span className={`choice ${answer === 'optionOne' ? 'selected-answer' : ''}`}>
+                                        <span>
                                             {optionOne.text}
                                         </span>
                                     </label>
@@ -84,7 +84,7 @@ class QuestionPage extends Component {
                                         </div>
                                     )}
                                 </p>
-                                <p>
+                                <p className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>
                                     <label>
                                         <input 
                                         name="options" 
@@ -94,7 +94,7 @@ class QuestionPage extends Component {
                                         disabled={answer !== null}
                                         checked={this.state.selectedAnswer === 'optionTwo'} 
                                         />
-                                        <span className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>
+                                        <span>
                                             {optionTwo.text}
                                         </span>
                                     </label>

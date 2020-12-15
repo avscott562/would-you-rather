@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
 import 'materialize-css';
@@ -27,31 +27,25 @@ class Dashboard extends Component {
 
                 <Tabs className="z-depth-1 dashboard-tab">
                     <Tab 
-                      active
-                      options={{
-                        duration: 300,
-                        onShow: null,
-                        responsiveThreshold: Infinity,
-                        swipeable: false
+                    options={{
+                        duration: 300
                       }}
-                      title="Unanswered">
-                          <h3>Check out the polls below.  Which would you rather?</h3>
-                          {unanswered.map(id => (
-                              <p key={id}>
+                      title="Answered Polls">
+                          <p className='tab-header'>Nicely done!  See what your peers think.</p>
+                          {answered.map(id => (
+                              <p key={id} className="poll">
                                   <Question id={id}/>
                               </p>
                           ))}
                     </Tab>
                     <Tab 
-                    options={{
-                        duration: 300,
-                        onShow: null,   
-                        responsiveThreshold: Infinity,
-                        swipeable: false
+                      active
+                      options={{
+                        duration: 300
                       }}
-                      title="Answered">
-                          <h3>Nicely done!  See what your peers think.</h3>
-                          {answered.map(id => (
+                      title="Unanswered Polls">
+                          <p className='tab-header'>Check out the polls below.  Which would you rather?</p>
+                          {unanswered.map(id => (
                               <p key={id}>
                                   <Question id={id}/>
                               </p>

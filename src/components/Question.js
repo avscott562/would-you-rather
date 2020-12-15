@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, withRouter } from'react-router-dom'
+import { Link } from'react-router-dom'
 import { connect } from 'react-redux'
 import '../css/question.css'
 import 'materialize-css'
@@ -8,11 +8,16 @@ class Question extends Component {
     render() {
         console.log(this.props)
         const { 
-            authedUser, 
+            authedUser,
+            question, 
             question: { id, optionOne },
             author, 
             author: { name, avatarURL } 
         } = this.props
+
+        if (question === null) {
+            return <p>This question doesn't exist.</p>
+        }
 
         return (
             <div className="question">
@@ -26,8 +31,12 @@ class Question extends Component {
                     <div className='question-body'>
                     <div className="question-image"><img src={avatarURL} alt={author.id}/></div>
                         <div className="question-info">
-                            <h5>Would You Rather...</h5>
-                            <p className="options">{optionOne.text.substr(0,(optionOne.text.length - 6))}...</p>
+                            <p>Would You Rather...</p>
+                            <div className="options">
+                                {optionOne.text.length > 6 
+                                  ? optionOne.text.substr(0,(optionOne.text.length - 6)) 
+                                  : optionOne.text}...
+                            </div>
                         </div>
                         <Link to={`/questions/${id}`}><p className='btn' type='submit'>See more...</p></Link>
                     </div>

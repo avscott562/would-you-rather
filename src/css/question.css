@@ -1,6 +1,6 @@
 .question {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     height: 50%;
     margin: 50px auto;
     display: flex;
@@ -48,6 +48,7 @@
 
 .options {
     text-align: left;
+    margin-left: 20px;
 }
 
 .selected-answer {

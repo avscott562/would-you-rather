@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from'react-router-dom'
 import { connect } from 'react-redux'
 import 'materialize-css';
 import { Select, Button, Icon } from 'react-materialize';
@@ -36,7 +35,7 @@ class LogIn extends Component {
     }
 
     render() {
-        const { userList, authedUser } = this.props
+        const { userList } = this.props
         
         return (
             <Fragment>
