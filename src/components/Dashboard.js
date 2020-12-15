@@ -21,8 +21,8 @@ class Dashboard extends Component {
         return (
             <div>
                 <div className="dashboard-header">
-                    <img src={avatarURL} alt={`Avatar of ${name}`}/>
                     <h1>{`Hi ${name}!`}</h1>
+                    <img src={avatarURL} alt={`Avatar of ${name}`}/>
                 </div>
 
                 <Tabs className="z-depth-1 dashboard-tab">
@@ -35,7 +35,7 @@ class Dashboard extends Component {
                         swipeable: false
                       }}
                       title="Unanswered">
-                          <h3>Unanswered Questions</h3>
+                          <h3>Check out the polls below.  Which would you rather?</h3>
                           {unanswered.map(id => (
                               <p key={id}>
                                   <Question id={id}/>
@@ -50,7 +50,7 @@ class Dashboard extends Component {
                         swipeable: false
                       }}
                       title="Answered">
-                          <h3>Answered Questions</h3>
+                          <h3>Nicely done!  See what your peers think.</h3>
                           {answered.map(id => (
                               <p key={id}>
                                   <Question id={id}/>

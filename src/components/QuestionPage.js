@@ -49,67 +49,72 @@ class QuestionPage extends Component {
 
         return (
             <div className="question">
-                <p className="question-header">
-                    {authedUser === id 
-                    ? <span>You ask:</span>
-                    : <span>{name} asks:</span>}
-                </p>
-                <div className="question-body">
-                    <section><img src={avatarURL} alt={id}/></section>
-                    <section className="question-info">
-                        <h5>Would You Rather...</h5>
-                        <form className="options">
-                            <p>
-                                <label>
-                                    <input 
-                                      name="options" 
-                                      type="radio" 
-                                      value="optionOne" 
-                                      onChange={this.handleChange}
-                                      disabled={answer !== null}
-                                      checked={this.state.selectedAnswer === 'optionOne'}
-                                    />
-                                    <span className={`choice ${answer === 'optionOne' ? 'selected-answer' : ''}`}>
-                                        {optionOne.text}
-                                    </span>
-                                </label>
-                                {answer !== null && (
-                                    <div>
-                                        <p>{voteOnePct}% of people prefer this option</p>
-                                        <p>{optOneVotes} out of {totalVotes}</p>
-                                    </div>
-                                )}
-                            </p>
-                            <p>
-                                <label>
-                                    <input 
-                                      name="options" 
-                                      type="radio" 
-                                      value="optionTwo"
-                                      onChange={this.handleChange}
-                                      disabled={answer !== null}
-                                      checked={this.state.selectedAnswer === 'optionTwo'} 
-                                    />
-                                    <span className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>
-                                        {optionTwo.text}
-                                    </span>
-                                </label>
-                                {answer !== null && (
-                                    <div>
-                                        <p>{voteTwoPct}% of people prefer this option</p>
-                                        <p>{optTwoVotes} out of {totalVotes}</p>
-                                    </div>
-                                )}
-                            </p>
-                        </form>
-                    </section>
-                    <button 
-                      className='btn' 
-                      type='submit'
-                      disabled={answer !== null}
-                      onClick={this.handleSubmit}>
-                         Submit
-                    </button>
+                <div className="question-content">
+                    <div className="question-header">
+                        {authedUser === id 
+                        ? 'You ask:'
+                        : `${name} asks:`}
+                    </div>
+
+                    <div className="question-body">
+                        <div className='question-image'>
+                            <img src={avatarURL} alt={id}/>
+                        </div>
+                        <div className="question-info">
+                            <h5>Would You Rather...</h5>
+                            <form className="options">
+                                <p>
+                                    <label>
+                                        <input 
+                                        name="options" 
+                                        type="radio" 
+                                        value="optionOne" 
+                                        onChange={this.handleChange}
+                                        disabled={answer !== null}
+                                        checked={this.state.selectedAnswer === 'optionOne'}
+                                        />
+                                        <span className={`choice ${answer === 'optionOne' ? 'selected-answer' : ''}`}>
+                                            {optionOne.text}
+                                        </span>
+                                    </label>
+                                    {answer !== null && (
+                                        <div>
+                                            <p>{voteOnePct}% of people prefer this option</p>
+                                            <p>{optOneVotes} out of {totalVotes}</p>
+                                        </div>
+                                    )}
+                                </p>
+                                <p>
+                                    <label>
+                                        <input 
+                                        name="options" 
+                                        type="radio" 
+                                        value="optionTwo"
+                                        onChange={this.handleChange}
+                                        disabled={answer !== null}
+                                        checked={this.state.selectedAnswer === 'optionTwo'} 
+                                        />
+                                        <span className={`choice ${answer === 'optionTwo' ? 'selected-answer' : ''}`}>
+                                            {optionTwo.text}
+                                        </span>
+                                    </label>
+                                    {answer !== null && (
+                                        <div>
+                                            <p>{voteTwoPct}% of people prefer this option</p>
+                                            <p>{optTwoVotes} out of {totalVotes}</p>
+                                        </div>
+                                    )}
+                                </p>
+                            </form>
+                        </div>
+                        <button 
+                        className='btn' 
+                        type='submit'
+                        disabled={answer !== null}
+                        onClick={this.handleSubmit}>
+                            Submit
+                        </button>
+                    </div>
                 </div>
             </div>
         )
