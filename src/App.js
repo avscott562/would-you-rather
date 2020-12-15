@@ -17,7 +17,7 @@ import Nav from './components/Nav'
 import QuestionPage from './components/QuestionPage'
 import NewQuestion from './components/NewQuestion'
 import LeaderBoard from './components/LeaderBoard'
-import ErrorPage from './components/ErrorPage'
+// import ErrorPage from './components/ErrorPage'
 import Home from './components/Home'
 
 // bring in css file
